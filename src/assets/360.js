@@ -1,35 +1,48 @@
+// Import everything from three
 import * as THREE from '/src/threejs/three.module.min.js';
 
+// Assign variables
 let camera, scene, renderer;
 
+// Assign variables to not rotate the image when user rotates the image manually
 let isUserInteracting = false,
     onPointerDownMouseX = 0, onPointerDownMouseY = 0,
     lon = 0, onPointerDownLon = 0,
     lat = 0, onPointerDownLat = 0,
     phi = 0, theta = 0;
 
+// Run functions in loop
 init();
 animate();
 
+// Initialize function
 function init() {
 
+    // Get container from html
     const container = document.getElementById('container');
 
+    // Add new camera with a POV of 100°
     camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 1100);
 
+    // Create new scene
     scene = new THREE.Scene();
 
+    // Add new geometry
     const geometry = new THREE.SphereGeometry(500, 60, 40);
     // invert the geometry on the x-axis so that all of the faces point inward
     geometry.scale(- 1, 1, 1);
 
+    // Create new texture with the 360 image
     const texture = new THREE.TextureLoader().load('/src/assets/2294472375_24a3b8ef46_o.jpg');
     const material = new THREE.MeshBasicMaterial({ map: texture });
 
+    // Create the mesh from geometry and material
     const mesh = new THREE.Mesh(geometry, material);
 
+    // Add mesh to scene
     scene.add(mesh);
 
+    // Add WebGLRenderer
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -40,7 +53,6 @@ function init() {
 
     document.addEventListener('wheel', onDocumentMouseWheel);
 
-    //
 
     document.addEventListener('dragover', function (event) {
 
