@@ -160,12 +160,12 @@ function animate() {
 }
 
 function update() {
-
+    /* Automaic move when user is not interacting
     if (isUserInteracting === false) {
 
         lon += 0.01;
 
-    }
+    } */
 
     lat = Math.max(- 85, Math.min(85, lat));
     phi = THREE.MathUtils.degToRad(90 - lat);
