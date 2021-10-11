@@ -33,7 +33,7 @@ function init() {
     geometry.scale(- 1, 1, 1);
 
     // Create new texture with the 360 image
-    const texture = new THREE.TextureLoader().load('/src/assets/2294472375_24a3b8ef46_o.jpg');
+    const texture = new THREE.TextureLoader().load('/src/assets/output.JPG');
     const material = new THREE.MeshBasicMaterial({ map: texture });
 
     // Create the mesh from geometry and material
