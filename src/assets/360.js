@@ -155,14 +155,16 @@ function onDocumentMouseWheel(event) {
 document.addEventListener('gestureend', function(e) {
     if (e.scale < 1.0) {
         // User moved fingers closer together
-        const fov = camera.fov + deltaY / 0.05;
+        console.log('Fingers closer')
+        const fov = camera.fov + e.deltaY / 0.05;
 
         camera.fov = THREE.MathUtils.clamp(fov, 30, 100);
 
         camera.updateProjectionMatrix();
     } else if (e.scale > 1.0) {
         // User moved fingers further apart
-        const fov = camera.fov + deltaY * 0.05;
+        console.log('Fingers further')
+        const fov = camera.fov + e.deltaY * 0.05;
 
         camera.fov = THREE.MathUtils.clamp(fov, 30, 100);
 
