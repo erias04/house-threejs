@@ -52,7 +52,6 @@ function init() {
     container.addEventListener('pointerdown', onPointerDown);
 
     document.addEventListener('wheel', onDocumentMouseWheel);
-    document.addEventListener('dblclick', onDocumentMouseWheel);
 
 
     document.addEventListener('dragover', function (event) {
