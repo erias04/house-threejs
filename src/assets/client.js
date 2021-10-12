@@ -40,20 +40,24 @@ export function animate() {
 }
 
 // ambient light
-let hemiLight = new THREE.AmbientLight(0xffffff, 0.2);
+let hemiLight = new THREE.AmbientLight(0xffffff, 1);
 scene.add(hemiLight);
 
 // directional light
-let dirLight = new THREE.DirectionalLight(0xffffff, 1);
-dirLight.position.set(-30, 50, -30);
-scene.add(dirLight);
-dirLight.castShadow = true;
-dirLight.shadow.mapSize.width = 2048;
-dirLight.shadow.mapSize.height = 2048;
-dirLight.shadow.camera.left = -70;
-dirLight.shadow.camera.right = 70;
-dirLight.shadow.camera.top = 70;
-dirLight.shadow.camera.bottom = -70;
+let dirLight1 = new THREE.DirectionalLight(0xffffff, .8);
+dirLight1.position.set(0, 50, 0);
+scene.add(dirLight1);
+// dirLight.castShadow = false;
+// dirLight.shadow.mapSize.width = 2048;
+// dirLight.shadow.mapSize.height = 2048;
+// dirLight.shadow.camera.left = -70;
+// dirLight.shadow.camera.right = 70;
+// dirLight.shadow.camera.top = 70;
+// dirLight.shadow.camera.bottom = -70;
+
+let dirLight2 = new THREE.DirectionalLight(0xffffff, .8);
+dirLight2.position.set(0, 50, 100);
+scene.add(dirLight2);
 
 
 // Add house
