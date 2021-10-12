@@ -52,6 +52,7 @@ function init() {
     container.addEventListener('pointerdown', onPointerDown);
 
     document.addEventListener('wheel', onDocumentMouseWheel);
+    document.addEventListener('dblclick', onDocumentMouseWheel);
 
 
     document.addEventListener('dragover', function (event) {
@@ -151,26 +152,6 @@ function onDocumentMouseWheel(event) {
     camera.updateProjectionMatrix();
 
 }
-
-document.addEventListener('gestureend', function(e) {
-    if (e.scale < 1.0) {
-        // User moved fingers closer together
-        console.log('Fingers closer')
-        const fov = camera.fov + e.deltaY / 0.05;
-
-        camera.fov = THREE.MathUtils.clamp(fov, 30, 100);
-
-        camera.updateProjectionMatrix();
-    } else if (e.scale > 1.0) {
-        // User moved fingers further apart
-        console.log('Fingers further')
-        const fov = camera.fov + e.deltaY * 0.05;
-
-        camera.fov = THREE.MathUtils.clamp(fov, 30, 100);
-
-        camera.updateProjectionMatrix();
-    }
-}, false);
 
 function animate() {
 
