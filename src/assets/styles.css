@@ -4,3 +4,37 @@ body {
     overflow: hidden;
     margin: 0px;
 }
+
+p{
+    font-family: poppins;
+}
+
+/* Progressbar */
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#loading .progress {
+    border: 1px solid white;
+    width: 15vw;
+    border-radius: .5vw;
+}
+#loading .progressbar {
+    margin: .1px;
+    background: white;
+    height: .5em;
+    transform-origin: top left;
+    transform: scaleX(0);
+}
+
+.loading_text{
+    font-weight: bold;
+    color: white;
+}
