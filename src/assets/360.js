@@ -31,14 +31,14 @@ function init() {
     // Add new geometry
     const geometry = new THREE.SphereGeometry(500, 60, 40);
     // invert the geometry on the x-axis so that all of the faces point inward
-    geometry.scale(- 1, 1, 1);
-
-    // Create new texture with the 360 image
-    const texture = new THREE.TextureLoader().load('/src/assets/output.JPG');
-    const material = new THREE.MeshBasicMaterial({ map: texture });
-
+    geometry.scale(- 1, 1, 1); 
+    
     const loadManager = new THREE.LoadingManager();
     const loader = new THREE.TextureLoader(loadManager);
+
+    // Create new texture with the 360 image
+    //const texture = new THREE.TextureLoader().load('/src/assets/output.JPG');
+    const material = new THREE.MeshBasicMaterial({ map: loader.load('/src/assets/output.JPG')});
 
     // Define variables from html
     const loadingElem = document.querySelector('#loading');
