@@ -38,6 +38,7 @@ function init() {
     const material = new THREE.MeshBasicMaterial({ map: texture });
 
     const loadManager = new THREE.LoadingManager();
+    const loader = new THREE.TextureLoader(loadManager);
 
     // Define variables from html
     const loadingElem = document.querySelector('#loading');
@@ -45,6 +46,7 @@ function init() {
 
     // Add mesh to scene after loading
     loadManager.onLoad = () => {
+        console.log('Finished loading mesh')
         loadingElem.style.display = 'none';
 
         // Create the mesh from geometry and material
@@ -56,6 +58,7 @@ function init() {
 
     // While loading the scene
     loadManager.onProgress = (urlOfLastLoaded, itemsLoaded, itemsTotal) => {
+        console.log('Loading mesh...')
         const progress = itemsLoaded / itemsTotal;
         progressBarElem.style.transform = `scaleX(${progress})`;
     }
