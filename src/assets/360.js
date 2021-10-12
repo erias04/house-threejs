@@ -41,13 +41,19 @@ function init() {
     const loadingElem = document.createElement('#loading');
     const progressBarElem = loadingElem.querySelector('.progressbar');
 
+    // Add mesh to scene after loading
+    loadManager.onLoad = () => {
+        loadingElem.style.display = 'none';
+
+        // Create the mesh from geometry and material
+        const mesh = new THREE.Mesh(geometry, material);
+
+        // Add mesh to scene
+        scene.add(mesh);
+    }
 
 
-    // Create the mesh from geometry and material
-    const mesh = new THREE.Mesh(geometry, material);
-
-    // Add mesh to scene
-    scene.add(mesh);
+    
 
     // Add WebGLRenderer
     renderer = new THREE.WebGLRenderer();
