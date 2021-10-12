@@ -37,10 +37,11 @@ function init() {
     const texture = new THREE.TextureLoader().load('/src/assets/output.JPG');
     const material = new THREE.MeshBasicMaterial({ map: texture });
 
+    // Define variables from html
     const loadingElem = document.createElement('#loading');
     const progressBarElem = loadingElem.querySelector('.progressbar');
 
-    
+
 
     // Create the mesh from geometry and material
     const mesh = new THREE.Mesh(geometry, material);
