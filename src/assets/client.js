@@ -79,12 +79,18 @@ function createHouse() {
     model.userData.draggable = true;
     model.userData.name = 'house';
     },
+    function ( onLoad ) {
+
+		console.log('Object is loading...' + onLoad);
+
+	},
 	// called while loading is progressing
 	function ( xhr ) {
 
 		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
 
 	},
+    
 	// called when loading has errors
 	function ( error ) {
 
