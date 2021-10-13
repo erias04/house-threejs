@@ -113,3 +113,8 @@ setRenderer();
     for every objects) > Creating scene (where the onComplete callback is called). So when low devices 
     can stall for few seconds, users know what is happening.
 */
+
+var ls=new LoadScreen(renderer,
+    {type:'stepped-circular-fancy-offset',
+    progressColor:'#f80',infoStyle:{padding:'0'}}).onComplete(setScene).start(assets);
+
