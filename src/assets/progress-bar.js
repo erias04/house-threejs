@@ -136,3 +136,16 @@ function setScene(){
 	setView();
 	ls.remove(animate);
 }
+
+function setLighting(){
+	var light=new THREE.DirectionalLight(0xffffff,.5,20);
+	light.position.set(5,0,0);
+	light.castShadow=true;
+	light.shadow.mapSize.set(2048,2048);
+	light.shadow.camera.top=light.shadow.camera.right=2;
+	light.shadow.camera.bottom=light.shadow.camera.left=-2;
+	renderer.shadowMap.enabled=true;
+	renderer.shadowMap.autoUpdate=false;
+	renderer.shadowMap.needsUpdate=true;
+	scene.add(light);
+}
