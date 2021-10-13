@@ -96,3 +96,10 @@ var assets = {
 		}
 	}
 };
+
+/*  
+	2. A THREE.WebGLRenderer instance has to be created and appended first : internally the library 
+    uses renderer.domElement for the overlay positionning, then also uses the renderer to compile materials.
+*/
+
+setRenderer();
