@@ -103,3 +103,13 @@ var assets = {
 */
 
 setRenderer();
+
+/*  
+	3. Then, magic ! Just one line to setup everything. Assets declaration is separated from the 
+    logic, the regular loading code is handled by the library, and load screens can be easily 
+    stylized. Various style types are displayed in the readme at github.com/Astrak/LoadScreen.js. 
+    More importantly, after loading, it displays and follows the following steps : processing (where 
+    geometry are processed, where PMREM can be created) > Compiling (where renderer.compile is called 
+    for every objects) > Creating scene (where the onComplete callback is called). So when low devices 
+    can stall for few seconds, users know what is happening.
+*/
