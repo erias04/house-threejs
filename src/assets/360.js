@@ -42,7 +42,7 @@ function init() {
 
     // Define variables from html
     const loadingElem = document.querySelector('#loading');
-    const progressBarElem = loadingElem.querySelector('.progressbar');
+    const progressBarElem = document.querySelector('.progressbar');
 
     // Add mesh to scene after loading
     loadManager.onLoad = () => {
