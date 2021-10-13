@@ -59,7 +59,7 @@ function init() {
     // While loading the scene
     loadManager.onProgress = (urlOfLastLoaded, itemsLoaded, itemsTotal) => {
         console.log('Loading mesh...')
-        const progress = itemsLoaded / itemsTotal;
+        const progress = itemsLoaded / itemsTotal * 100;
         console.log('Progress: '+ progress);
         progressBarElem.style.transform = `scaleX(${progress})`;
     }
