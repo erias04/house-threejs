@@ -149,3 +149,15 @@ function setLighting(){
 	renderer.shadowMap.needsUpdate=true;
 	scene.add(light);
 }
+
+function setView(){
+	camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,.2,200);
+	camera.position.set(3,1,1);
+	camera.update=true;
+	controls=new THREE.OrbitControls(camera,renderer.domElement);
+	controls.addEventListener('change',function(){camera.update=true;});
+	controls.enableDamping=true;
+	controls.dampingFactor=.1;
+	controls.rotateSpeed=.07;
+	window.addEventListener('resize',resize,false);
+}
