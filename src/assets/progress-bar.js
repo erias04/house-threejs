@@ -168,3 +168,12 @@ function resize(){
 	renderer.setSize(innerWidth,innerHeight);
 	camera.update=true;
 }
+
+function animate(){
+	requestAnimationFrame(animate);
+	controls.update();
+	if(camera.update){
+		renderer.render(scene,camera);
+		camera.update=false;
+	}
+}
