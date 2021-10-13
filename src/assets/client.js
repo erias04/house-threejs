@@ -9,7 +9,7 @@ const camera = new THREE.PerspectiveCamera(
     1500,
 );
 // Camera poosition
-camera.position.set(-35, 70, 100);
+camera.position.set(-35, 100, 200);
 camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 // Renderer
@@ -99,21 +99,26 @@ function createHouse() {
 }
 
 function createLabel() {
-    let pos = {x: 10, y: 10, z: 10};
+    let pos = {x: -15, y: 29.3, z: 57};
 
-    var map = new THREE.TextureLoader().load( '' );
-    const material = new THREE.SpriteMaterial( { map: map } );
+    var map = new THREE.TextureLoader().load( '/src/assets/blue-dot.png' );
 
-    const sprite = new THREE.Sprite( material );
+    const geometry = new THREE.PlaneGeometry( 1, 1 );
+    const material = new THREE.MeshBasicMaterial( {map: map} );
+    const plane = new THREE.Mesh( geometry, material );
+    scene.add( plane );
+    scene.add( new THREE.AxisHelper( 100 ) );
 
-    sprite.position.set(pos.x, pos.y, pos.z)
+    plane.position.set(pos.x, pos.y, pos.z)
+    plane.scale.set(3, 3, 3);
+    
+    plane.rotateX(Math.PI / -2);
+    
+    plane.userData.clickable = true;
+    plane.userData.name = 'SPRITE';
 
-    sprite.userData.clickable = true;
-    sprite.userData.name = 'SPRITE';
-
-    scene.add( sprite );
 }
-
+/* // Eventlistener click for userData.clickable = true
 const raycaster = new THREE.Raycaster();
 const clickMouse = new THREE.Vector2();
 const moveMouse = new THREE.Vector2();
@@ -132,14 +137,18 @@ window.addEventListener('click', event => {
   // calculate objects intersecting the picking ray
 	const found = raycaster.intersectObjects( scene.children );
 
-  if(found.length > 0 && found[0].object.userData.draggable) {
+  if(found.length > 0 && found[0].object.userData.clickable) {
     draggable = found[0].object
+
+    // Moving camera to object
     console.log(`found draggable ${draggable.userData.name}`)
   }
 
-})
+})*/
+
+
 
 createHouse()
-//createLabel()
+createLabel()
 
 animate()
