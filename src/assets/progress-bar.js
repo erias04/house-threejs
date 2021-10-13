@@ -161,3 +161,10 @@ function setView(){
 	controls.rotateSpeed=.07;
 	window.addEventListener('resize',resize,false);
 }
+
+function resize(){
+	camera.aspect=innerWidth/innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize(innerWidth,innerHeight);
+	camera.update=true;
+}
