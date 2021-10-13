@@ -38,3 +38,15 @@ p{
     font-weight: bold;
     color: white;
 }
+
+/* Progressbar */
+canvas{
+	cursor:grab;
+	cursor:-webkit-grab;
+	cursor:-moz-grab;
+}
+canvas:active{
+	cursor:grabbing;
+	cursor:-webkit-grabbing;
+	cursor:-moz-grabbing;
+}
