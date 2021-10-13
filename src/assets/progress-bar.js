@@ -114,7 +114,16 @@ setRenderer();
     can stall for few seconds, users know what is happening.
 */
 
-var ls=new LoadScreen(renderer,
+var ls = new LoadScreen(renderer,
     {type:'stepped-circular-fancy-offset',
     progressColor:'#f80',infoStyle:{padding:'0'}}).onComplete(setScene).start(assets);
 
+function setRenderer(){
+    renderer=new THREE.WebGLRenderer();
+    renderer.setPixelRatio(devicePixelRatio);
+    renderer.setSize(innerWidth,innerHeight);
+    renderer.gammaInput=renderer.gammaOutput=true;
+    renderer.toneMapping=THREE.ReinhardToneMapping;
+    renderer.toneMappingExposure=1.5;
+    document.body.appendChild(renderer.domElement);
+}
