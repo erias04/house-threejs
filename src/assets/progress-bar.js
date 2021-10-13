@@ -127,3 +127,12 @@ function setRenderer(){
     renderer.toneMappingExposure=1.5;
     document.body.appendChild(renderer.domElement);
 }
+
+function setScene(){
+	scene=new THREE.Scene();
+	mesh=assets.objects.mesh;
+	scene.add(mesh);
+	setLighting();
+	setView();
+	ls.remove(animate);
+}
