@@ -1,4 +1,5 @@
-import * as THREE from "/src/assets/threejs/three.module.min.js"
+import * as THREE from '/src/threejs/three.module.min.js';
+import * as LoadScreen from '/src/assets/LoadScreen.min.js';
 
 /*  
 	Ever experienced the bad feeling of sending a customer an app where you have to wait several seconds 
@@ -114,19 +115,65 @@ setRenderer();
     can stall for few seconds, users know what is happening.
 */
 
-var ls = new LoadScreen(renderer,
-    {type:'stepped-circular-fancy-offset',
-    progressColor:'#f80',infoStyle:{padding:'0'}}).onComplete(setScene).start(assets);
+const style = {
+    type: 'linear-horizontal',//Main look. 'custom' empties the info container.
+    size: '170px',//Width of the central info container, in px or in %.
+    background: '#333',
+    progressContainerColor: '#000',
+    progressColor: '#333',
+    infoStyle: {//Text style : default values.
+        fontFamily: 'monospace',
+        color: '#666',
+        fontSize: '12px',
+        padding: '10px'
+    },
+    weight: '10',//Weight of the progress element (svg units).
+    sizeInfo: true,//Display size progress in MB.
+    progressInfo: true,//Display the progress element.
+    textInfo: [ 'Loading', 'Processing', 'Compiling', 'Creating scene' ]//Or false to remove.
+};
+
+const options = {
+    forcedStart: false,//Start loading even if the canvas is out of sight (usually bad practice).
+    verbose: false,//Logs progress, process and compile duration + total load screen duration.
+    tweenDuration: .5//Progress and removal tweens durations.
+};
+
+
+
 
 function setRenderer(){
-    renderer=new THREE.WebGLRenderer();
+    renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(devicePixelRatio);
     renderer.setSize(innerWidth,innerHeight);
-    renderer.gammaInput=renderer.gammaOutput=true;
-    renderer.toneMapping=THREE.ReinhardToneMapping;
+    // renderer.gammaInput=renderer.gammaOutput=true; // Not used any more
+    // renderer.toneMapping=THREE.ReinhardToneMapping;
     renderer.toneMappingExposure=1.5;
     document.body.appendChild(renderer.domElement);
 }
+const ls = new LoadScreen( renderer, style );//Style is optional.
+
+
+window.addEventListener( 'resize', () => {
+    renderer.setSize( width, height );
+    ls.setSize( width, height );
+});
+
+ls.setOptions( options )
+
+//.onProgress( progress => {  } )//Can be used to update a custom UI.
+
+//.onComplete( init )//After processing and compiling.
+//Load assets > process assets > compile materials > scene creation.
+
+//or
+//.start();//Just add the info UI.
+
+//Then for big script progress or just testing.
+//ls.setProgress( 0.5 );
+
+//Finally at the end of the onComplete callback
+//ls.remove( animate );//Removal is tweened so next action is a callback.
 
 function setScene(){
 	scene=new THREE.Scene();
@@ -137,18 +184,6 @@ function setScene(){
 	ls.remove(animate);
 }
 
-function setLighting(){
-	var light=new THREE.DirectionalLight(0xffffff,.5,20);
-	light.position.set(5,0,0);
-	light.castShadow=true;
-	light.shadow.mapSize.set(2048,2048);
-	light.shadow.camera.top=light.shadow.camera.right=2;
-	light.shadow.camera.bottom=light.shadow.camera.left=-2;
-	renderer.shadowMap.enabled=true;
-	renderer.shadowMap.autoUpdate=false;
-	renderer.shadowMap.needsUpdate=true;
-	scene.add(light);
-}
 
 function setView(){
 	camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,.2,200);
