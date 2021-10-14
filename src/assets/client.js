@@ -1,6 +1,5 @@
 import { GLTFLoader } from '../threejs/GLTFLoader.min.js';
 import { OrbitControls } from '../threejs/OrbitControls.min.js'
-import * as TWEEN from './teween.js'
 
 var DATA = {
   "streetViewDots": [
@@ -163,7 +162,7 @@ window.addEventListener('click', event => {
     draggable = found[0].object
 
     // Moving camera to object
-    console.log(DATA.streetViewDots[draggable.userData.name].camera[draggable.userData.name].camerapositionx);
+    console.log(DATA.streetViewDots[draggable.userData.name].camerapositionx);
 
 
     gsap.to( camera.position, {
