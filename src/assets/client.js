@@ -104,7 +104,9 @@ function createHouse() {
 	// called while loading is progressing
 	function ( xhr ) {
 
-		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+    const status = xhr.loaded / xhr.total * 100;
+
+		console.log( status + '% loaded' );
 
 	},
     function ( onLoad ) {
