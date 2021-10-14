@@ -214,10 +214,10 @@ window.addEventListener('click', event => {
 
   
 window.addEventListener('load', function() {
-  console.log('All assets are loaded';
+  console.log('Mesh has been successfully rendered');
 
   console.log('Caching images');
-  
+
   function preloadImages(array) {
     if (!preloadImages.list) {
       preloadImages.list = [];
