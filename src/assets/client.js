@@ -109,30 +109,36 @@ function createHouse() {
 		console.log( status + ' % loaded' );
 
 
-    // if (status != null) {
-    //   console.log('Caching images')
-    //   function preloadImages(array) {
-    //     if (!preloadImages.list) {
-    //         preloadImages.list = [];
-    //     }
-    //     var list = preloadImages.list;
-    //     for (var i = 0; i < array.length; i++) {
-    //         var img = new Image();
-    //         img.onload = function() {
-    //             var index = list.indexOf(this);
-    //             if (index !== -1) {
-    //                 // remove image from the array once it's loaded
-    //                 // for memory consumption reasons
-    //                 list.splice(index, 1);
-    //             }
-    //         }
-    //         list.push(img);
-    //         img.src = array[i];
-    //     }
-    // }
+    if (status != null) {
+      console.log('Caching images...');
+      function preloadImages(array) {
+
+        setTimeout(function(){ 
+          if (!preloadImages.list) {
+            preloadImages.list = [];
+        }
+        var list = preloadImages.list;
+        for (var i = 0; i < array.length; i++) {
+            var img = new Image();
+            img.onload = function() {
+                var index = list.indexOf(this);
+                if (index !== -1) {
+                    // remove image from the array once it's loaded
+                    // for memory consumption reasons
+                    list.splice(index, 1);
+                }
+            }
+            list.push(img);
+            img.src = array[i];
+        }
+        console.log("Images cached successfully");
+      }, 3000);
+      
+        
+    }
     
-    // preloadImages(["/src/assets/output.JPG"]);
-    // }
+    preloadImages(["/src/assets/output.JPG"]);
+    }
 
 	},
     function ( onLoad ) {
@@ -210,35 +216,6 @@ window.addEventListener('click', event => {
     console.log(`found draggable ${draggable.userData.name}`);
   }
 
-})
-
-  
-window.addEventListener('load', function() {
-  console.log('Mesh has been successfully rendered');
-
-  console.log('Caching images');
-
-  function preloadImages(array) {
-    if (!preloadImages.list) {
-      preloadImages.list = [];
-    }
-    var list = preloadImages.list;
-    for (var i = 0; i < array.length; i++) {
-      var img = new Image();
-      img.onload = function () {
-        var index = list.indexOf(this);
-        if (index !== -1) {
-          // remove image from the array once it's loaded
-          // for memory consumption reasons
-          list.splice(index, 1);
-        }
-      }
-      list.push(img);
-      img.src = array[i];
-    }
-  }
-    
-    preloadImages(["/src/assets/output.JPG"]);
 })
 
 
