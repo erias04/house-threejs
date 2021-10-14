@@ -1,6 +1,22 @@
 import { GLTFLoader } from '../threejs/GLTFLoader.min.js';
 import { OrbitControls } from '../threejs/OrbitControls.min.js'
 
+var DATA = {
+  "streetViewDots": [
+    {
+        "positionx": -15,
+        "positiony": 29.3,
+        "positionz": 57
+    },
+    {
+        "positionx": -15,
+        "positiony": 29.3,
+        "positionz": 57
+    }
+  ]
+}
+
+
 // Camera configuration
 const camera = new THREE.PerspectiveCamera(
     30,
@@ -99,7 +115,6 @@ function createHouse() {
 }
 
 function createLabel() {
-    let pos = {x: -15, y: 29.3, z: 57};
 
     var map = new THREE.TextureLoader().load( '/src/assets/blue-dot.png' );
 
@@ -109,7 +124,7 @@ function createLabel() {
     scene.add( plane );
     scene.add( new THREE.AxisHelper( 100 ) );
 
-    plane.position.set(pos.x, pos.y, pos.z)
+    plane.position.set(DATA.streetViewDots[1].positionx, DATA.streetViewDots[1].positiony, DATA.streetViewDots[1].positionz)
     plane.scale.set(3, 3, 3);
     
     plane.rotateX(Math.PI / -2);
@@ -118,7 +133,7 @@ function createLabel() {
     plane.userData.name = 'SPRITE';
 
 }
-/* // Eventlistener click for userData.clickable = true
+
 const raycaster = new THREE.Raycaster();
 const clickMouse = new THREE.Vector2();
 const moveMouse = new THREE.Vector2();
@@ -144,7 +159,7 @@ window.addEventListener('click', event => {
     console.log(`found draggable ${draggable.userData.name}`)
   }
 
-})*/
+})
 
 
 
