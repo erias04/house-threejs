@@ -163,14 +163,30 @@ window.addEventListener('click', event => {
     draggable = found[0].object
 
     // Moving camera to object
-    //console.log(DATA.streetViewDots[draggable.userData.name].camera[draggable.userData.name].camerapositionx);
-    camera.position.set(DATA.streetViewDots[1].camerapositionx, DATA.streetViewDots[1].camerapositiony, DATA.streetViewDots[1].camerapositionz);
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    console.log(DATA.streetViewDots[draggable.userData.name].camera[draggable.userData.name].camerapositionx);
+
+
+    gsap.to( camera.position, {
+      duration: 1,
+      x: -35,
+      y: 70,
+      z: 120,
+      onUpdate: function () {
+        camera.lookAt(new THREE.Vector3(0, 0, 0))
+        camera.updateProjectionMatrix();
+      }
+    } );
+  
+
     
+
     console.log(`found draggable ${draggable.userData.name}`);
   }
 
 })
+
+		
+  
 
 
 
