@@ -36,7 +36,7 @@ camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({antialias: true});
-renderer.setPixelRatio(window.devicePixelRatio / 2);
+renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 document.body.appendChild(renderer.domElement);
