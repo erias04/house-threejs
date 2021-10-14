@@ -213,7 +213,9 @@ window.addEventListener('click', event => {
 })
 
   
-
+window.addEventListener('load', function() {
+  console.log('All assets are loaded')
+})
 
 
 createHouse()
