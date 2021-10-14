@@ -1,17 +1,24 @@
 import { GLTFLoader } from '../threejs/GLTFLoader.min.js';
 import { OrbitControls } from '../threejs/OrbitControls.min.js'
+import * as TWEEN from './teween.js'
 
 var DATA = {
   "streetViewDots": [
     {
         "positionx": -15,
         "positiony": 29.3,
-        "positionz": 57
+        "positionz": 57,
+        "camerapositionx": -35,
+        "camerapositiony": 70,
+        "camerapositionz": 120
     },
     {
         "positionx": -15,
         "positiony": 29.3,
-        "positionz": 57
+        "positionz": 57,
+        "camerapositionx": -35,
+        "camerapositiony": 70,
+        "camerapositionz": 120
     }
   ]
 }
@@ -30,7 +37,7 @@ camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({antialias: true});
-renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setPixelRatio(window.devicePixelRatio / 2);
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 document.body.appendChild(renderer.domElement);
@@ -130,7 +137,7 @@ function createLabel() {
     plane.rotateX(Math.PI / -2);
     
     plane.userData.clickable = true;
-    plane.userData.name = 'SPRITE';
+    plane.userData.name = 1;
 
 }
 
@@ -156,7 +163,11 @@ window.addEventListener('click', event => {
     draggable = found[0].object
 
     // Moving camera to object
-    console.log(`found draggable ${draggable.userData.name}`)
+    //console.log(DATA.streetViewDots[draggable.userData.name].camera[draggable.userData.name].camerapositionx);
+    camera.position.set(DATA.streetViewDots[1].camerapositionx, DATA.streetViewDots[1].camerapositiony, DATA.streetViewDots[1].camerapositionz);
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    
+    console.log(`found draggable ${draggable.userData.name}`);
   }
 
 })
