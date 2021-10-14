@@ -108,7 +108,7 @@ function createHouse() {
 
 		console.log( status + ' % loaded' );
 
-    if (status) {
+    if (status != null) {
       console.log('Caching images')
       function preloadImages(array) {
         if (!preloadImages.list) {
