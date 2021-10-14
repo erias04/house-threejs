@@ -106,9 +106,9 @@ function createHouse() {
 
     const status = xhr.loaded / xhr.total * 100;
 
-		console.log( status + '% loaded' );
+		console.log( status + ' % loaded' );
 
-    if (status === 100) {
+    if (status) {
       console.log('Caching images')
       function preloadImages(array) {
         if (!preloadImages.list) {
