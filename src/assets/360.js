@@ -41,11 +41,11 @@ function init() {
     const material = new THREE.MeshBasicMaterial({ map: loader.load('/src/assets/output.JPG')});
 
     // Define variables from html
-    const loadingElem = document.querySelector('#loading');
+    // const loadingElem = document.querySelector('#loading');
     const progressBarElem = document.querySelector('.progressbar');
 
     // Add mesh to scene after loading
-    loadManager.onLoad = () => {
+    /*loadManager.onLoad = () => {
         console.log('Finished loading mesh')
         loadingElem.style.display = 'none';
 
@@ -62,7 +62,7 @@ function init() {
         const progress = itemsLoaded / itemsTotal * 100;
         console.log('Progress: '+ progress);
         progressBarElem.style.transform = `scaleX(${progress})`;
-    }
+    }*/
 
 
     
