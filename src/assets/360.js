@@ -179,7 +179,7 @@ function onDocumentMouseWheel(event) {
 
 function animate360() {
 
-    requestAnimationFrame(animate);
+    requestAnimationFrame(animate360);
     update();
 
 }

@@ -1,5 +1,6 @@
 import { GLTFLoader } from '../threejs/GLTFLoader.min.js';
 import { OrbitControls } from '../threejs/OrbitControls.min.js'
+import { animate360 } from './360.js'
 
 var DATA = {
   "streetViewDots": [
@@ -222,4 +223,4 @@ window.addEventListener('click', event => {
 createHouse()
 createLabel()
 
-animate()
+animate360()
