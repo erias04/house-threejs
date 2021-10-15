@@ -1,27 +1,7 @@
 import { GLTFLoader } from '../threejs/GLTFLoader.min.js';
 import { OrbitControls } from '../threejs/OrbitControls.min.js'
 import { animate360 } from './360.js'
-
-var DATA = {
-  "streetViewDots": [
-    {
-        "positionx": -15,
-        "positiony": 29.3,
-        "positionz": 57,
-        "camerapositionx": -35,
-        "camerapositiony": 70,
-        "camerapositionz": 120
-    },
-    {
-        "positionx": -15,
-        "positiony": 29.3,
-        "positionz": 57,
-        "camerapositionx": -35,
-        "camerapositiony": 70,
-        "camerapositionz": 120
-    }
-  ]
-}
+import { DATA } from './DATA.js';
 
 
 // Camera configuration
@@ -138,7 +118,7 @@ function createHouse() {
         
     }
     
-    preloadImages(["/src/assets/output.JPG"]);
+    preloadImages(["https://dev.eliascerne.com/src/assets/output.JPG"]);
     }
 
 	},
