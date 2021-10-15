@@ -205,3 +205,6 @@ function update() {
     renderer.render(scene, camera);
 
 }
+
+// Export functio for client.js
+export {animate360}
