@@ -13,7 +13,7 @@ let isUserInteracting = false,
 
 // Run functions in loop
 init();
-animate();
+animate360();
 
 
 // Initialize function
@@ -177,7 +177,7 @@ function onDocumentMouseWheel(event) {
 
 }
 
-function animate() {
+function animate360() {
 
     requestAnimationFrame(animate);
     update();
