@@ -1,8 +1,9 @@
 import { GLTFLoader } from '../threejs/GLTFLoader.min.js';
 import { OrbitControls } from '../threejs/OrbitControls.min.js'
-import { animate360 } from './360.js'
 import { DATA } from './DATA.js';
 
+
+const streetViewRedirect = true;
 
 // Camera configuration
 const camera = new THREE.PerspectiveCamera(
@@ -118,7 +119,7 @@ function createHouse() {
         
     }
     
-    preloadImages(["https://dev.eliascerne.com/src/assets/output.JPG"]);
+    preloadImages(["/src/assets/output.JPG"]);
     }
 
 	},
@@ -200,7 +201,7 @@ window.addEventListener('click', event => {
 })
 
 
-createHouse()
-createLabel()
+createHouse();
+createLabel();
+animate();
 
-animate360()
