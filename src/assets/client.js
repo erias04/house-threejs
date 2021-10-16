@@ -189,6 +189,9 @@ window.addEventListener('click', event => {
       onUpdate: function () {
         camera.lookAt(new THREE.Vector3(0, 0, 0))
         camera.updateProjectionMatrix();
+      },
+      onComplete: function () {
+        window.location.href = "/360.html";
       }
     } );
   
