@@ -38,7 +38,7 @@ function init() {
 
     // Create new texture with the 360 image
     //const texture = new THREE.TextureLoader().load('/src/assets/output.JPG');
-    const material = new THREE.MeshBasicMaterial({ map: loader.load('https://dev.eliascerne.com/src/assets/output.JPG')});
+    const material = new THREE.MeshBasicMaterial({ map: loader.load('/src/assets/output.JPG')});
 
     // Define variables from html
     const loadingElem = document.querySelector('#loading');
@@ -177,7 +177,7 @@ function onDocumentMouseWheel(event) {
 
 }
 
-function animate360() {
+export function animate360() {
 
     requestAnimationFrame(animate360);
     update();
@@ -206,5 +206,3 @@ function update() {
 
 }
 
-// Export function for client.js
-export {animate360}
