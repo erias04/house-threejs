@@ -1,73 +1,35 @@
-// Import everything from three
 import * as THREE from '/src/threejs/three.module.min.js';
 
-// Assign variables
 let camera, scene, renderer;
 
-// Assign variables to not rotate the image when user rotates the image manually
 let isUserInteracting = false,
     onPointerDownMouseX = 0, onPointerDownMouseY = 0,
     lon = 0, onPointerDownLon = 0,
     lat = 0, onPointerDownLat = 0,
     phi = 0, theta = 0;
 
-// Run functions in loop
 init();
-animate360();
+animate();
 
-
-// Initialize function
 function init() {
 
-    // Get container from html
     const container = document.getElementById('container');
 
-    // Add new camera with a POV of 100°
     camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 1100);
 
-    // Create new scene
     scene = new THREE.Scene();
 
-    // Add new geometry
     const geometry = new THREE.SphereGeometry(500, 60, 40);
     // invert the geometry on the x-axis so that all of the faces point inward
-    geometry.scale(- 1, 1, 1); 
-    
-    const loadManager = new THREE.LoadingManager();
-    const loader = new THREE.TextureLoader(loadManager);
+    geometry.scale(- 1, 1, 1);
 
-    // Create new texture with the 360 image
-    //const texture = new THREE.TextureLoader().load('/src/assets/output.JPG');
-    const material = new THREE.MeshBasicMaterial({ map: loader.load('/src/assets/output.JPG')});
+    const texture = new THREE.TextureLoader().load('/src/assets/output-min-1.JPG');
+    const material = new THREE.MeshBasicMaterial({ map: texture });
 
-    // Define variables from html
-    const loadingElem = document.querySelector('#loading');
-    const progressBarElem = document.querySelector('.progressbar');
+    const mesh = new THREE.Mesh(geometry, material);
 
-    // Add mesh to scene after loading
-    loadManager.onLoad = () => {
-        console.log('Finished loading mesh')
-        loadingElem.style.display = 'none';
+    scene.add(mesh);
 
-        // Create the mesh from geometry and material
-        const mesh = new THREE.Mesh(geometry, material);
-
-        // Add mesh to scene
-        scene.add(mesh);
-    }
-
-    // While loading the scene
-    loadManager.onProgress = (urlOfLastLoaded, itemsLoaded, itemsTotal) => {
-        console.log('Loading mesh...')
-        const progress = itemsLoaded / itemsTotal * 100;
-        console.log('Progress: '+ progress);
-        progressBarElem.style.transform = `scaleX(${progress})`;
-    }
-
-
-    
-
-    // Add WebGLRenderer
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -78,6 +40,7 @@ function init() {
 
     document.addEventListener('wheel', onDocumentMouseWheel);
 
+    //
 
     document.addEventListener('dragover', function (event) {
 
@@ -177,20 +140,20 @@ function onDocumentMouseWheel(event) {
 
 }
 
-export function animate360() {
+function animate() {
 
-    requestAnimationFrame(animate360);
+    requestAnimationFrame(animate);
     update();
 
 }
 
 function update() {
-    /* Automaic move when user is not interacting
-    if (isUserInteracting === false) {
 
-        lon += 0.01;
+    // if (isUserInteracting === false) {
 
-    } */
+    //     lon += 0.01;
+
+    // }
 
     lat = Math.max(- 85, Math.min(85, lat));
     phi = THREE.MathUtils.degToRad(90 - lat);
@@ -205,4 +168,3 @@ function update() {
     renderer.render(scene, camera);
 
 }
-
