@@ -10,24 +10,20 @@ let isUserInteracting = false,
 
 
 // Camera configuration
-const camera = new THREE.PerspectiveCamera(
+const camera360 = new THREE.PerspectiveCamera(
     100, 
     window.innerWidth / window.innerHeight, 
     1, 
     1100
 );
 
-// Renderer
-const renderer = new THREE.WebGLRenderer({antialias: true});
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+
 
 // Window resize Handling
 function onWindowResize() {
 
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
+    camera360.aspect = window.innerWidth / window.innerHeight;
+    camera360.updateProjectionMatrix();
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -35,20 +31,12 @@ function onWindowResize() {
 window.addEventListener('resize', onWindowResize);
 
 //Scene
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xbfd1e5);
+const scene360 = new THREE.Scene();
+scene360.background = new THREE.Color(0xbfd1e5);
 
 // MapControls
 // const controls = new OrbitControls(camera, renderer.domElement);
 
-// Render scene
-function animate() {
-
-    renderer.render(scene, camera);
-    requestAnimationFrame(animate);
-    update();
-
-}
 
 function createSphere() {
 const geometry = new THREE.SphereGeometry(500, 60, 40);
@@ -60,7 +48,7 @@ const material = new THREE.MeshBasicMaterial({ map: texture });
 
 const mesh = new THREE.Mesh(geometry, material);
 
-scene.add(mesh);
+scene360.add(mesh);
 }
 
 
@@ -150,11 +138,11 @@ function onPointerUp() {
 
 function onDocumentMouseWheel(event) {
 
-    const fov = camera.fov + event.deltaY * 0.05;
+    const fov = camera360.fov + event.deltaY * 0.05;
 
-    camera.fov = THREE.MathUtils.clamp(fov, 30, 100);
+    camera360.fov = THREE.MathUtils.clamp(fov, 30, 100);
 
-    camera.updateProjectionMatrix();
+    camera360.updateProjectionMatrix();
 
 }
 
@@ -175,12 +163,13 @@ function update() {
     const y = 500 * Math.cos(phi);
     const z = 500 * Math.sin(phi) * Math.sin(theta);
 
-    camera.lookAt(x, y, z);
+    camera360.lookAt(x, y, z);
 
-    renderer.render(scene, camera);
+    // renderer.render(scene360, camera360);
 
 }
 
 createSphere();
 
-animate();
+
+export { scene360, camera360, update };
