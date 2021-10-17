@@ -1,9 +1,11 @@
 import { GLTFLoader } from '../threejs/GLTFLoader.min.js';
 import { OrbitControls } from '../threejs/OrbitControls.min.js'
 import { DATA } from './DATA.js';
+import { scene360 } from './360.js'
+import { camera360 } from './360.js'
+import { update } from './360.js'
 
-
-const streetViewRedirect = true;
+const streetViewRedirect = false;
 
 // Camera configuration
 const camera = new THREE.PerspectiveCamera(
@@ -38,10 +40,18 @@ scene.background = new THREE.Color(0xbfd1e5);
 // MapControls
 const controls = new OrbitControls(camera, renderer.domElement);
 
-export function animate() {
-    renderer.render(scene, camera);
-    requestAnimationFrame(animate);
-}
+// export function animate() {
+//   if (streetViewRedirect) {
+//     renderer.render(scene360, camera360);
+//     requestAnimationFrame(animate);
+//     update();
+//   }
+//   else if (!streetViewRedirect) {
+//     renderer.render(scene, camera);
+//     requestAnimationFrame(animate);
+//   }
+    
+// }
 
 // ambient light
 let hemiLight = new THREE.AmbientLight(0xffffff, 1);
@@ -191,7 +201,7 @@ window.addEventListener('click', event => {
         camera.updateProjectionMatrix();
       },
       onComplete: function () {
-        window.location.href = "/360.html";
+        streetViewRedirect = true;
       }
     } );
   
@@ -202,6 +212,19 @@ window.addEventListener('click', event => {
   }
 
 })
+
+export function animate() {
+  if (streetViewRedirect) {
+    renderer.render(scene360, camera360);
+    requestAnimationFrame(animate);
+    update();
+  }
+  else if (!streetViewRedirect) {
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  }
+    
+}
 
 
 createHouse();
