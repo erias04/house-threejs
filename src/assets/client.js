@@ -5,7 +5,7 @@ import { scene360 } from './360.js'
 import { camera360 } from './360.js'
 import { update } from './360.js'
 
-const streetViewRedirect = false;
+var streetViewRedirect = false;
 
 // Camera configuration
 const camera = new THREE.PerspectiveCamera(
@@ -212,6 +212,10 @@ window.addEventListener('click', event => {
   }
 
 })
+
+// .addEventListener('change', function() {
+//   console.log('sessionStorage changed ' + sessionStorage.getItem(streetViewRedirect));
+// });
 
 export function animate() {
   if (streetViewRedirect) {
