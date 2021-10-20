@@ -129,7 +129,7 @@ function createHouse() {
         
     }
     
-    preloadImages(["/src/assets/output.JPG"]);
+    preloadImages(["/src/assets/output-min-1.JPG"]);
     }
 
 	},
