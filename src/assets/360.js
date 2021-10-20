@@ -25,7 +25,6 @@ function onWindowResize() {
     camera360.aspect = window.innerWidth / window.innerHeight;
     camera360.updateProjectionMatrix();
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
 
 }
 window.addEventListener('resize', onWindowResize);
