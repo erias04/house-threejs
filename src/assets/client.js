@@ -171,7 +171,7 @@ const clickMouse = new THREE.Vector2();
 const moveMouse = new THREE.Vector2();
 var draggable = new THREE.Object3D();
 
-window.addEventListener('click', event => {
+window.addEventListener('click touchstart', event => {
   // calculate mouse position in normalized device coordinates
 	// (-1 to +1) for both components
 
