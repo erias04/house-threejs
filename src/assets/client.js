@@ -206,12 +206,12 @@ var streetView = function (event) {
 
 
     gsap.to( camera.position, {
-      duration: 1,
-      x: -35,
-      y: 70,
-      z: 120,
+      duration: 2,
+      x: -12,
+      y: 40,
+      z: 90,
       onUpdate: function () {
-        camera.lookAt(new THREE.Vector3(0, 0, 0))
+        camera.lookAt(new THREE.Vector3(-20, 30, 0))
         camera.updateProjectionMatrix();
       },
       onComplete: function () {
