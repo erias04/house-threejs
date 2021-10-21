@@ -1,5 +1,6 @@
 import * as THREE from '/src/threejs/three.module.min.js';
 
+document.getElementById('close').style.display = 'auto';
 
 let isUserInteracting = false,
     onPointerDownMouseX = 0, onPointerDownMouseY = 0,
