@@ -19,6 +19,22 @@ var ModelView = function(event) {
 closeIcon.addEventListener('click', ModelView, false);
 
 
+var i = 1;
+
+function currentCameraPosition() {
+  setTimeout(function() {
+    //console.log('hello');
+    i++;
+    if (i < 10) {
+      currentCameraPosition();
+      console.log('Current Camera position: ')
+    }
+}, 3000)
+}
+
+currentCameraPosition();
+
+
 // Camera configuration
 const camera = new THREE.PerspectiveCamera(
     30,
