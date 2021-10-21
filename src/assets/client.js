@@ -14,6 +14,7 @@ document.getElementById('close').style.display = 'none';
 var ModelView = function(event) {
   console.log('Close Button pressed')
   streetViewRedirect = false;
+  document.getElementById('close').style.display = 'none';
 }
 
 closeIcon.addEventListener('click', ModelView, false);
