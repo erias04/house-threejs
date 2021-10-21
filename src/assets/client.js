@@ -8,16 +8,7 @@ import { update } from './360.js'
 var streetViewRedirect = false;
 
 const closeIcon = document.getElementById('close');
-
 document.getElementById('close').style.display = 'none';
-
-var ModelView = function(event) {
-  console.log('Close Button pressed')
-  streetViewRedirect = false;
-  document.getElementById('close').style.display = 'none';
-}
-
-closeIcon.addEventListener('click', ModelView, false);
 
 
 
@@ -31,7 +22,7 @@ const camera = new THREE.PerspectiveCamera(
 );
 // Camera poosition
 camera.position.set(-35, 100, 200);
-camera.lookAt(new THREE.Vector3(0, 0, 0));
+//camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({antialias: true});
@@ -231,6 +222,34 @@ var streetView = function (event) {
 
 window.addEventListener('touchstart', streetView, false);
 window.addEventListener('click', streetView, false);
+
+
+
+var ModelView = function(event) {
+  console.log('Close Button pressed')
+  streetViewRedirect = false;
+  document.getElementById('close').style.display = 'none';
+  camera.position.set(-12, 40, 90);
+
+  gsap.to( camera.position, {
+    duration: 2,
+    x: -35,
+    y: 100,
+    z: 200,
+    onUpdate: function () {
+      camera.lookAt(new THREE.Vector3(-20, 30, 0))
+      camera.updateProjectionMatrix();
+    },
+    onComplete: function () {
+      console.log('3d-Model successfully restored')
+    }
+  } );
+}
+
+closeIcon.addEventListener('click', ModelView, false);
+
+
+
 
 
 // .addEventListener('change', function() {
