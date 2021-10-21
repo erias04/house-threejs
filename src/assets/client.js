@@ -19,20 +19,6 @@ var ModelView = function(event) {
 closeIcon.addEventListener('click', ModelView, false);
 
 
-var i = 1;
-
-function currentCameraPosition() {
-  setTimeout(function() {
-    //console.log('hello');
-    i++;
-    if (i < 10) {
-      currentCameraPosition();
-      console.log('Current Camera position: ')
-    }
-}, 3000)
-}
-
-currentCameraPosition();
 
 
 // Camera configuration
@@ -268,3 +254,29 @@ createHouse();
 createLabel();
 animate();
 
+
+
+// /* DEBUGGING */
+
+// // Get current camera position (working but the camera does not changes, just the user)
+// var vector = new THREE.Vector3();
+// camera.getWorldDirection( vector );
+// console.log(vector);
+
+// var vectorOrbitControls = controls.getAzimuthalAngle()
+
+// var i = 1;
+
+// function currentCameraPosition() {
+//   setTimeout(function() {
+//     //console.log('hello');
+//     i++;
+//     if (i < 10) {
+//       currentCameraPosition();
+//       console.log('Current Camera position: ')
+//       console.log(vectorOrbitControls)
+//     }
+// }, 3000)
+// }
+
+// currentCameraPosition();
