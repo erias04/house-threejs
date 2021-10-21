@@ -50,3 +50,30 @@ canvas:active{
 	cursor:-webkit-grabbing;
 	cursor:-moz-grabbing;
 }
+
+/* X Botton (close) */
+.close {
+    background: teal;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    right: 0px;
+    cursor: pointer;
+}
+.close:after {
+    content: '';
+    height: 60px;
+    border-left: 5px solid #fff;
+    position: absolute;
+    transform: rotate(45deg);
+    left: 28px;
+}
+
+.close:before {
+    content: '';
+    height: 60px;
+    border-left: 5px solid #fff;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 28px;
+}
