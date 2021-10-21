@@ -4,7 +4,7 @@ document.getElementById('close').style.display = 'auto';
 
 let isUserInteracting = false,
     onPointerDownMouseX = 0, onPointerDownMouseY = 0,
-    lon = 0, onPointerDownLon = 0,
+    lon = 90, onPointerDownLon = 0,
     lat = 0, onPointerDownLat = 0,
     phi = 0, theta = 0;
 
