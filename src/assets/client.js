@@ -7,6 +7,18 @@ import { update } from './360.js'
 
 var streetViewRedirect = false;
 
+const closeIcon = document.getElementById('close');
+
+document.getElementById('close').style.display = 'none';
+
+var ModelView = function(event) {
+  console.log('Close Button pressed')
+  streetViewRedirect = false;
+}
+
+closeIcon.addEventListener('click', ModelView, false);
+
+
 // Camera configuration
 const camera = new THREE.PerspectiveCamera(
     30,
@@ -202,6 +214,7 @@ var streetView = function (event) {
       },
       onComplete: function () {
         streetViewRedirect = true;
+        document.getElementById('close').style.display = 'block';
       }
     } );
   
