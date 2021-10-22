@@ -222,7 +222,7 @@ var streetView = function (event) {
 
 };
 
-window.addEventListener('touchstart', streetView, false);
+window.addEventListener('mousemove', streetView, false);
 window.addEventListener('click', streetView, false);
 
 
