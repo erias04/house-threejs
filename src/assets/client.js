@@ -5,7 +5,7 @@ import { scene360 } from './360.js'
 import { camera360 } from './360.js'
 import { update } from './360.js'
 
-var streetViewRedirect = false;
+var streetViewRedirect = true;
 
 const closeIcon = document.getElementById('close');
 document.getElementById('close').style.display = 'none';
@@ -25,11 +25,13 @@ camera.position.set(-35, 100, 200);
 //camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 // Renderer
-const renderer = new THREE.WebGLRenderer({antialias: true});
+const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
+renderer.setClearColor( 0x000000, 0 );
 document.body.appendChild(renderer.domElement);
+
 
 // Window Resize Handling
 export function onWindowResize() {
