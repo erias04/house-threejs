@@ -75,11 +75,6 @@ function createArrow() {
     plane.userData.clickable = true;
     plane.userData.name = 1;
 
-    var planePressed = function(event) {
-        console.log('Plane pressed');
-    }
-
-    document.getElementById('plane').addEventListener('click', planePressed, false)
 
     // domEvents.addEventListener(plane, 'mouseover', function(event) {
     //     new_material.color = mesh.material.color;
@@ -92,6 +87,38 @@ function createArrow() {
     //   });
 
 }
+
+
+const raycaster = new THREE.Raycaster();
+const clickMouse = new THREE.Vector2();
+var clickable = new THREE.Object3D();
+
+var arrowRedirect = function (event) {
+    // calculate mouse position in normalized device coordinates
+      // (-1 to +1) for both components
+  
+      clickMouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+      clickMouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+  
+    // update the picking ray with the camera and mouse position
+      raycaster.setFromCamera( clickMouse, camera360 );
+  
+    // calculate objects intersecting the picking ray
+      const found = raycaster.intersectObjects( scene360.children );
+  
+    if(found.length > 0 && found[0].object.userData.clickable) {
+      clickable = found[0].object  
+      
+  
+      console.log(`found draggable ${clickable.userData.name}`);
+    }
+  
+  };
+  
+  // window.addEventListener('mousemove', arrowRedirect, false);
+  window.addEventListener('click', arrowRedirect, false);
+
+
 
 
 
