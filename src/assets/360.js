@@ -17,7 +17,7 @@ const camera360 = new THREE.PerspectiveCamera(
     1, 
     1100
 );
-
+camera360.position.set(10, 10, 10);
 
 
 // Window resize Handling
@@ -31,7 +31,7 @@ function onWindowResize() {
 window.addEventListener('resize', onWindowResize);
 
 //Scene
-const scene360 = new THREE.Scene();
+const scene360 = new THREE.Scene({alpha: true});
 scene360.background = new THREE.Color(0xbfd1e5);
 
 // MapControls
@@ -50,6 +50,49 @@ const mesh = new THREE.Mesh(geometry, material);
 
 scene360.add(mesh);
 }
+
+
+function createArrow() {
+    // var planeDocument = document.getElementById('plane');
+
+    var map = new THREE.TextureLoader().load( '/src/assets/x-angle.png' );
+
+
+    const geometry = new THREE.PlaneGeometry( 1, 1 );
+    const material = new THREE.MeshBasicMaterial( {map: map, opacity: 0.5} );
+    const plane = new THREE.Mesh( geometry, material );
+    scene360.add( plane );
+    // scene360.add( new THREE.AxisHelper( 100 ) );
+
+    
+
+    plane.position.set(30, 0, 8);
+    plane.scale.set(3, 3, 3);
+    plane.background = (0x000000, .1);
+    
+    plane.rotateX(Math.PI / -2);
+    
+    plane.userData.clickable = true;
+    plane.userData.name = 1;
+
+    var planePressed = function(event) {
+        console.log('Plane pressed');
+    }
+
+    document.getElementById('plane').addEventListener('click', planePressed, false)
+
+    // domEvents.addEventListener(plane, 'mouseover', function(event) {
+    //     new_material.color = mesh.material.color;
+    //     mesh.material = new_material;
+    //     return renderer.render(scene, camera);
+    //   });
+    //   return domEvents.addEventListener(plane, 'mouseout', function(event) {
+    //     mesh.material = materials[mesh.uuid];
+    //     return renderer.render(scene, camera);
+    //   });
+
+}
+
 
 
 document.body.style.touchAction = 'none';
@@ -170,6 +213,8 @@ function update() {
 }
 
 createSphere();
+createArrow();
+
 
 
 export { scene360, camera360, update };
