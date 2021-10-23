@@ -16,7 +16,8 @@ var DATA = {
           "camerapositiony": 70,
           "camerapositionz": 120
       }
-    ]
+    ],
+    "streetViewRedirect": false
 }
 
 export {DATA};
