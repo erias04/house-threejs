@@ -107,10 +107,24 @@ var arrowRedirect = function (event) {
       const found = raycaster.intersectObjects( scene360.children );
   
     if(found.length > 0 && found[0].object.userData.clickable) {
-      clickable = found[0].object  
-      
-  
+      clickable = found[0].object
       console.log(`found draggable ${clickable.userData.name}`);
+        
+      let progress = {};
+      progress.fov = camera360.fov;
+
+      
+        gsap.to(progress, {
+            duration: 2,
+            fov: 45,
+            onUpdate: function () {
+                //   camera360.lookAt(0,0,0);
+                camera360.updateProjectionMatrix();
+                camera360.fov = progress.fov;
+
+                // renderer.render(scene, camera);
+            },
+        });
     }
   
   };
