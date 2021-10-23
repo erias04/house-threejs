@@ -5,7 +5,7 @@ import { scene360 } from './360.js'
 import { camera360 } from './360.js'
 import { update } from './360.js'
 
-var streetViewRedirect = true;
+// var streetViewRedirect = false;
 
 const closeIcon = document.getElementById('close');
 document.getElementById('close').style.display = 'none';
@@ -98,7 +98,7 @@ function createHouse() {
 
     scene.add(house.scene);
     
-    model.userData.draggable = true;
+    model.userData.draggable = false;
     model.userData.name = 'house';
     },
 	// called while loading is progressing
@@ -209,7 +209,7 @@ var streetView = function (event) {
         camera.updateProjectionMatrix();
       },
       onComplete: function () {
-        streetViewRedirect = true;
+        DATA.streetViewRedirect = true;
         document.getElementById('close').style.display = 'block';
       }
     } );
@@ -229,7 +229,7 @@ window.addEventListener('click', streetView, false);
 
 var ModelView = function(event) {
   console.log('Close Button pressed')
-  streetViewRedirect = false;
+  DATA.streetViewRedirect = false;
   document.getElementById('close').style.display = 'none';
   camera.position.set(-12, 40, 90);
 
@@ -259,12 +259,12 @@ closeIcon.addEventListener('click', ModelView, false);
 // });
 
 export function animate() {
-  if (streetViewRedirect) {
+  if (DATA.streetViewRedirect) {
     renderer.render(scene360, camera360);
     requestAnimationFrame(animate);
     update();
   }
-  else if (!streetViewRedirect) {
+  else if (!DATA.streetViewRedirect) {
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
   }
@@ -278,9 +278,9 @@ animate();
 
 
 
-// /* DEBUGGING */
+/* DEBUGGING */
 
-// // Get current camera position (working but the camera does not changes, just the user)
+// Get current camera position (working but the camera does not changes, just the user)
 // var vector = new THREE.Vector3();
 // camera.getWorldDirection( vector );
 // console.log(vector);

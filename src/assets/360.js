@@ -132,11 +132,10 @@ var arrowRedirect = function (event) {
 };
 
 // window.addEventListener('mousemove', arrowRedirect, false);
-if (DATA.streetViewRedirect) {
+
+function streetViewRedirect() {
     window.addEventListener('click', arrowRedirect, false);
-} else {}
-
-
+}
 
 
 
@@ -253,6 +252,9 @@ function update() {
     const z = 500 * Math.sin(phi) * Math.sin(theta);
 
     camera360.lookAt(x, y, z);
+
+    // Sets the eventlistener for image to image redirect
+    streetViewRedirect();
 
     // renderer.render(scene360, camera360);
 
