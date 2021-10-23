@@ -115,7 +115,7 @@ var arrowRedirect = function (event) {
 
       
         gsap.to(progress, {
-            duration: 2,
+            duration: .5,
             fov: 45,
             onUpdate: function () {
                 //   camera360.lookAt(0,0,0);
