@@ -1,4 +1,6 @@
 import * as THREE from '/src/threejs/three.module.min.js';
+import { DATA } from './DATA.js'
+
 
 document.getElementById('close').style.display = 'auto';
 
@@ -72,7 +74,7 @@ function createArrow() {
     
     plane.rotateX(Math.PI / -2);
     
-    plane.userData.clickable = true;
+    plane.userData.redirect = true;
     plane.userData.name = 1;
 
 
@@ -91,29 +93,29 @@ function createArrow() {
 
 const raycaster = new THREE.Raycaster();
 const clickMouse = new THREE.Vector2();
-var clickable = new THREE.Object3D();
+var redirect = new THREE.Object3D();
 
 var arrowRedirect = function (event) {
     // calculate mouse position in normalized device coordinates
-      // (-1 to +1) for both components
-  
-      clickMouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-      clickMouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-  
-    // update the picking ray with the camera and mouse position
-      raycaster.setFromCamera( clickMouse, camera360 );
-  
-    // calculate objects intersecting the picking ray
-      const found = raycaster.intersectObjects( scene360.children );
-  
-    if(found.length > 0 && found[0].object.userData.clickable) {
-      clickable = found[0].object
-      console.log(`found draggable ${clickable.userData.name}`);
-        
-      let progress = {};
-      progress.fov = camera360.fov;
+    // (-1 to +1) for both components
 
-      
+    clickMouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    clickMouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+
+    // update the picking ray with the camera and mouse position
+    raycaster.setFromCamera(clickMouse, camera360);
+
+    // calculate objects intersecting the picking ray
+    const found = raycaster.intersectObjects(scene360.children);
+
+    if (found.length > 0 && found[0].object.userData.redirect) {
+        redirect = found[0].object
+        console.log(`found clickable ${redirect.userData.name}`);
+
+        let progress = {};
+        progress.fov = camera360.fov;
+
+
         gsap.to(progress, {
             duration: .5,
             fov: 45,
@@ -126,11 +128,14 @@ var arrowRedirect = function (event) {
             },
         });
     }
-  
-  };
-  
-  // window.addEventListener('mousemove', arrowRedirect, false);
-  window.addEventListener('click', arrowRedirect, false);
+
+};
+
+// window.addEventListener('mousemove', arrowRedirect, false);
+if (DATA.streetViewRedirect) {
+    window.addEventListener('click', arrowRedirect, false);
+} else {}
+
 
 
 
