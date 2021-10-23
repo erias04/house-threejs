@@ -39,16 +39,16 @@ scene360.background = new THREE.Color(0xbfd1e5);
 
 
 function createSphere() {
-const geometry = new THREE.SphereGeometry(500, 60, 40);
-// invert the geometry on the x-axis so that all of the faces point inward
-geometry.scale(- 1, 1, 1);
+    const geometry = new THREE.SphereGeometry(500, 60, 40);
+    // invert the geometry on the x-axis so that all of the faces point inward
+    geometry.scale(- 1, 1, 1);
 
-const texture = new THREE.TextureLoader().load('/src/assets/output-min-1.JPG');
-const material = new THREE.MeshBasicMaterial({ map: texture });
+    const texture = new THREE.TextureLoader().load('/src/assets/output-min-1.JPG');
+    const material = new THREE.MeshBasicMaterial({ map: texture });
 
-const mesh = new THREE.Mesh(geometry, material);
+    const mesh = new THREE.Mesh(geometry, material);
 
-scene360.add(mesh);
+    scene360.add(mesh);
 }
 
 
