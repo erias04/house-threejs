@@ -97,6 +97,7 @@ function createHouse() {
     //model.receiveShadow = true
 
     scene.add(house.scene);
+    scene.add( new THREE.AxisHelper( 100 ) );
     
     model.userData.draggable = false;
     model.userData.name = 'house';
@@ -162,7 +163,6 @@ function createLabel() {
     const material = new THREE.MeshBasicMaterial( {map: map} );
     const plane = new THREE.Mesh( geometry, material );
     scene.add( plane );
-    scene.add( new THREE.AxisHelper( 100 ) );
 
     plane.position.set(DATA.streetViewDots[1].positionx, DATA.streetViewDots[1].positiony, DATA.streetViewDots[1].positionz)
     plane.scale.set(3, 3, 3);
