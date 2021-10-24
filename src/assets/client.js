@@ -1,9 +1,10 @@
 import { GLTFLoader } from '../threejs/GLTFLoader.min.js';
 import { OrbitControls } from '../threejs/OrbitControls.min.js'
 import { DATA } from './DATA.js';
-import { scene360 } from './360.js'
+import { scene360, updateParameters } from './360.js'
 import { camera360 } from './360.js'
 import { update } from './360.js'
+import { createSphere } from './360.js'
 
 // var streetViewRedirect = false;
 
@@ -138,7 +139,7 @@ function createHouse() {
         
     }
     
-    preloadImages(["/src/assets/output-min-1.JPG"]);
+    preloadImages(["/src/assets/images/output-min-1.JPG"]);
     }
 
 	},
@@ -211,7 +212,8 @@ var streetView = function (event) {
       onComplete: function () {
         DATA.streetViewRedirect = true;
         document.getElementById('close').style.display = 'block';
-
+        createSphere();
+        updateParameters();
       }
     } );
     

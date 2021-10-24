@@ -6,11 +6,14 @@ document.getElementById('close').style.display = 'auto';
 
 let isUserInteracting = false,
     onPointerDownMouseX = 0, onPointerDownMouseY = 0,
-    lon = 90, onPointerDownLon = 0,
+    lon = 0, onPointerDownLon = 0,
     lat = 0, onPointerDownLat = 0,
     phi = 0, theta = 0;
 
 
+function updateParameters() {
+    lon = DATA.streetViewDots[sessionStorage.getItem('streetViewRedirect')].firstEntryPoint;
+}
 
 // Camera configuration
 const camera360 = new THREE.PerspectiveCamera(
@@ -45,7 +48,7 @@ function createSphere() {
     // invert the geometry on the x-axis so that all of the faces point inward
     geometry.scale(- 1, 1, 1);
 
-    const texture = new THREE.TextureLoader().load('/src/assets/output-min-1.JPG');
+    const texture = new THREE.TextureLoader().load(DATA.streetViewDots[sessionStorage.getItem('streetViewRedirect')].image);
     const material = new THREE.MeshBasicMaterial({ map: texture });
 
     const mesh = new THREE.Mesh(geometry, material);
@@ -272,4 +275,4 @@ createArrow();
 
 
 
-export { scene360, camera360, update };
+export { scene360, camera360, update, createSphere, updateParameters };
