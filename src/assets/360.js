@@ -51,6 +51,7 @@ function createSphere() {
     const mesh = new THREE.Mesh(geometry, material);
 
     scene360.add(mesh);
+    console.log('Sphere successfully created')
 }
 
 
