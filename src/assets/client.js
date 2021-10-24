@@ -170,19 +170,14 @@ function createLabel() {
 
       scene.add(plane);
       plane.userData.clickable = true;
-      plane.userData.name = 1;
-    } 
-
-    
-    
-    
-
+      plane.userData.name = i;
+    }
 }
 
 const raycaster = new THREE.Raycaster();
 const clickMouse = new THREE.Vector2();
 const moveMouse = new THREE.Vector2();
-var draggable = new THREE.Object3D();
+var clickable = new THREE.Object3D();
 
 var streetView = function (event) {
   // calculate mouse position in normalized device coordinates
@@ -198,10 +193,10 @@ var streetView = function (event) {
 	const found = raycaster.intersectObjects( scene.children );
 
   if(found.length > 0 && found[0].object.userData.clickable) {
-    draggable = found[0].object
+    clickable = found[0].object
 
     // Moving camera to object
-    console.log(DATA.streetViewDots[draggable.userData.name].camerapositionx);
+    console.log(DATA.streetViewDots[clickable.userData.name].camerapositionx);
 
 
     gsap.to( camera.position, {
@@ -216,13 +211,13 @@ var streetView = function (event) {
       onComplete: function () {
         DATA.streetViewRedirect = true;
         document.getElementById('close').style.display = 'block';
+
       }
     } );
   
 
-    
 
-    console.log(`found draggable ${draggable.userData.name}`);
+    console.log(`found draggable ${clickable.userData.name}`);
   }
 
 };
