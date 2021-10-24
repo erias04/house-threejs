@@ -6,7 +6,8 @@ var DATA = {
           "positionz": 57,
           "camerapositionx": -12,
           "camerapositiony": 40,
-          "camerapositionz": 90
+          "camerapositionz": 90,
+          "image": "/src/assets/images/output-min-1.JPG"
       },
       {
           "positionx": -20,
@@ -14,7 +15,8 @@ var DATA = {
           "positionz": 57,
           "camerapositionx": -17,
           "camerapositiony": 40,
-          "camerapositionz": 90
+          "camerapositionz": 90,
+          "image": "/src/assets/images/output2-min-1.JPG"
       }
     ],
     "streetViewRedirect": false
