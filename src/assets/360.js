@@ -133,8 +133,14 @@ var arrowRedirect = function (event) {
 
 // window.addEventListener('mousemove', arrowRedirect, false);
 
+var i = 1;
 function streetViewRedirect() {
-    window.addEventListener('click', arrowRedirect, false);
+    while (i < 2) {
+        console.log('streetViewRedirect established');
+        window.addEventListener('click', arrowRedirect, false);
+        i++;
+      }
+    
 }
 
 
