@@ -161,16 +161,21 @@ function createLabel() {
 
     const geometry = new THREE.PlaneGeometry( 1, 1 );
     const material = new THREE.MeshBasicMaterial( {map: map} );
-    const plane = new THREE.Mesh( geometry, material );
-    scene.add( plane );
 
-    plane.position.set(DATA.streetViewDots[1].positionx, DATA.streetViewDots[1].positiony, DATA.streetViewDots[1].positionz)
-    plane.scale.set(3, 3, 3);
+    for (var i = 0; i < 2; i ++) {
+      var plane = new THREE.Mesh( geometry, material );
+      plane.position.set(DATA.streetViewDots[i].positionx, DATA.streetViewDots[i].positiony, DATA.streetViewDots[i].positionz);
+      plane.scale.set(3, 3, 3);
+      plane.rotateX(Math.PI / -2);
+
+      scene.add(plane);
+      plane.userData.clickable = true;
+      plane.userData.name = 1;
+    } 
+
     
-    plane.rotateX(Math.PI / -2);
     
-    plane.userData.clickable = true;
-    plane.userData.name = 1;
+    
 
 }
 

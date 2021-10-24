@@ -9,7 +9,7 @@ var DATA = {
           "camerapositionz": 120
       },
       {
-          "positionx": -15,
+          "positionx": -20,
           "positiony": 29.3,
           "positionz": 57,
           "camerapositionx": -35,
