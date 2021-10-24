@@ -201,9 +201,9 @@ var streetView = function (event) {
 
     gsap.to( camera.position, {
       duration: 2,
-      x: -12,
-      y: 40,
-      z: 90,
+      x: DATA.streetViewDots[clickable.userData.name].camerapositionx,
+      y: DATA.streetViewDots[clickable.userData.name].camerapositiony,
+      z: DATA.streetViewDots[clickable.userData.name].camerapositionz,
       onUpdate: function () {
         camera.lookAt(new THREE.Vector3(-20, 30, 0))
         camera.updateProjectionMatrix();
@@ -214,10 +214,10 @@ var streetView = function (event) {
 
       }
     } );
-  
-
-
+    
     console.log(`found draggable ${clickable.userData.name}`);
+
+    sessionStorage.setItem('streetViewRedirect', `${clickable.userData.name}`);
   }
 
 };
