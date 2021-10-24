@@ -6,12 +6,12 @@ import { camera360 } from './360.js'
 import { update } from './360.js'
 import { createSphere } from './360.js'
 
-// var streetViewRedirect = false;
+var streetViewRedirect = false;
 
 const closeIcon = document.getElementById('close');
 document.getElementById('close').style.display = 'none';
 
-
+console.log(DATA.streetView[1].model2image[0].positionx)
 
 
 // Camera configuration
@@ -165,7 +165,7 @@ function createLabel() {
 
     for (var i = 0; i < 2; i ++) {
       var plane = new THREE.Mesh( geometry, material );
-      plane.position.set(DATA.streetViewDots[i].positionx, DATA.streetViewDots[i].positiony, DATA.streetViewDots[i].positionz);
+      plane.position.set(DATA.streetView[i].model2image[0].positionx, DATA.streetView[i].model2image[0].positiony, DATA.streetView[i].model2image[0].positionz);
       plane.scale.set(3, 3, 3);
       plane.rotateX(Math.PI / -2);
 
@@ -197,14 +197,14 @@ var streetView = function (event) {
     clickable = found[0].object
 
     // Moving camera to object
-    console.log(DATA.streetViewDots[clickable.userData.name].camerapositionx);
+    console.log(DATA.streetView[clickable.userData.name].model2image[0].camerapositionx);
 
 
     gsap.to( camera.position, {
       duration: 2,
-      x: DATA.streetViewDots[clickable.userData.name].camerapositionx,
-      y: DATA.streetViewDots[clickable.userData.name].camerapositiony,
-      z: DATA.streetViewDots[clickable.userData.name].camerapositionz,
+      x: DATA.streetView[clickable.userData.name].model2image[0].camerapositionx,
+      y: DATA.streetView[clickable.userData.name].model2image[0].camerapositiony,
+      z: DATA.streetView[clickable.userData.name].model2image[0].camerapositionz,
       onUpdate: function () {
         camera.lookAt(new THREE.Vector3(-20, 30, 0))
         camera.updateProjectionMatrix();

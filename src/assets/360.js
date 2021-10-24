@@ -12,7 +12,7 @@ let isUserInteracting = false,
 
 
 function updateParameters() {
-    lon = DATA.streetViewDots[sessionStorage.getItem('streetViewRedirect')].firstEntryPoint;
+    lon = DATA.streetView[sessionStorage.getItem('streetViewRedirect')].model2image[0].firstEntryPoint;
 }
 
 // Camera configuration
@@ -48,7 +48,7 @@ function createSphere() {
     // invert the geometry on the x-axis so that all of the faces point inward
     geometry.scale(- 1, 1, 1);
 
-    const texture = new THREE.TextureLoader().load(DATA.streetViewDots[sessionStorage.getItem('streetViewRedirect')].image);
+    const texture = new THREE.TextureLoader().load(DATA.streetView[sessionStorage.getItem('streetViewRedirect')].model2image[0].image);
     const material = new THREE.MeshBasicMaterial({ map: texture });
 
     const mesh = new THREE.Mesh(geometry, material);
@@ -130,6 +130,9 @@ var arrowRedirect = function (event) {
 
                 // renderer.render(scene, camera);
             },
+            onComplete: function () {
+                sessionStorage.setItem('image2image', DATA.streetView[sessionStorage.getItem('streetViewRedirect')].image2image[0].image)
+              }
         });
     }
 
