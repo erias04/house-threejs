@@ -4,17 +4,17 @@ var DATA = {
           "positionx": -15,
           "positiony": 29.3,
           "positionz": 57,
-          "camerapositionx": -35,
-          "camerapositiony": 70,
-          "camerapositionz": 120
+          "camerapositionx": -12,
+          "camerapositiony": 40,
+          "camerapositionz": 90
       },
       {
           "positionx": -20,
           "positiony": 29.3,
           "positionz": 57,
-          "camerapositionx": -35,
-          "camerapositiony": 70,
-          "camerapositionz": 120
+          "camerapositionx": -17,
+          "camerapositiony": 40,
+          "camerapositionz": 90
       }
     ],
     "streetViewRedirect": false
