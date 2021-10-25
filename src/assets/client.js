@@ -245,7 +245,8 @@ var ModelView = function(event) {
       camera.updateProjectionMatrix();
     },
     onComplete: function () {
-      console.log('3d-Model successfully restored')
+      sessionStorage.removeItem('image2image');
+      console.log('3d-Model successfully restored');
     }
   } );
 }

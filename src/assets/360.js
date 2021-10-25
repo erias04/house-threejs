@@ -49,13 +49,19 @@ function createSphere() {
     geometry.scale(- 1, 1, 1);
 
     let texture = null;
-
-    if (Number.isInteger(sessionStorage.getItem('image2image'))) {
-        texture = new THREE.TextureLoader().load(DATA.streetView[sessionStorage.getItem('streetViewRedirect')].image2image[0].image);
-    } else {
-        texture = new THREE.TextureLoader().load(DATA.streetView[sessionStorage.getItem('streetViewRedirect')].model2image[0].image); 
-    }
     
+    if (sessionStorage.getItem('image2image') !== null) {
+        texture = new THREE.TextureLoader().load(DATA.streetView[sessionStorage.getItem('streetViewRedirect')].image2image[0].image);
+        console.log('image2image exists')
+    }
+    else if (sessionStorage.getItem('streetViewRedirect') !== null) {
+        texture = new THREE.TextureLoader().load(DATA.streetView[sessionStorage.getItem('streetViewRedirect')].model2image[0].image);
+        console.log('model2image does exists && image2image does not exists')
+    } else {
+        texture = null
+        console.log('nor image2image and mode2image exists')
+    }
+
     const material = new THREE.MeshBasicMaterial({ map: texture });
 
     const mesh = new THREE.Mesh(geometry, material);
@@ -138,7 +144,8 @@ var arrowRedirect = function (event) {
                 // renderer.render(scene, camera);
             },
             onComplete: function () {
-                sessionStorage.setItem('image2image', DATA.streetView[sessionStorage.getItem('streetViewRedirect')].image2image[0].image)
+                sessionStorage.setItem('image2image', sessionStorage.getItem('streetViewRedirect'));
+                createSphere();
               }
         });
     }
