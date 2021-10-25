@@ -48,7 +48,14 @@ function createSphere() {
     // invert the geometry on the x-axis so that all of the faces point inward
     geometry.scale(- 1, 1, 1);
 
-    const texture = new THREE.TextureLoader().load(DATA.streetView[sessionStorage.getItem('streetViewRedirect')].model2image[0].image);
+    let texture = null;
+
+    if (Number.isInteger(sessionStorage.getItem('image2image'))) {
+        texture = new THREE.TextureLoader().load(DATA.streetView[sessionStorage.getItem('streetViewRedirect')].image2image[0].image);
+    } else {
+        texture = new THREE.TextureLoader().load(DATA.streetView[sessionStorage.getItem('streetViewRedirect')].model2image[0].image); 
+    }
+    
     const material = new THREE.MeshBasicMaterial({ map: texture });
 
     const mesh = new THREE.Mesh(geometry, material);
