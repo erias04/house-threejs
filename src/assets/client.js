@@ -85,6 +85,7 @@ scene.add(dirLight2);
 
 // Add house
 function createHouse() {
+    THREE.Cache.enabled = true;
     const loader = new GLTFLoader();
 
     loader.load('/src/assets/3d-house/house.gltf', function(house){
