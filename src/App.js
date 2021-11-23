@@ -1,15 +1,18 @@
 import './App.css';
+import Model from './components/Model'
 
-import ReactDOM from 'react-dom';
+import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
+import { Environment } from '@react-three/drei'
 
-function App() {
+export default function App() {
   return (
-    <div className="canvas-container">
+    <>
       <Canvas>
+        <Suspense fallback={null}>
+          <Model />
+        </Suspense>
       </Canvas>
-    </div>
-  );
+    </>
+  )
 }
-
-export default App;
