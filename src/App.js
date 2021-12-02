@@ -1,6 +1,6 @@
 import './App.css';
 import Model from './components/Model';
-import streetView from './components/StreetView';
+import StreetView from './components/StreetView';
 
 import { useState } from 'react';
 import * as THREE from 'three';
@@ -20,16 +20,21 @@ export default function App() {
         <directionalLight intensity={.5} position={[0, 0, 5]} />
         <Suspense fallback={null}>
           <Model />
-          <Circle rotation={[-Math.PI / 2, 0, 0]} position={[-20, 1.5, 39]} onClick={(e) => console.log('click')}>
+          <Circle rotation={[-Math.PI / 2, 0, 0]} position={[-20, 1.5, 39]} onClick={(e) => console.log('clicked')}>
             <meshPhongMaterial color="white" />
           </Circle>
         </Suspense>
         <OrbitControls />
         <axesHelper args={[100, 100]} />
+        <Suspense fallback={null}>
+          <StreetView />
+        </Suspense>
       </Canvas>
       : 
-      <Canvas>
-        <streetView />
+      <Canvas camera={{ fov: 150, zoom: 1, near: 0.005, far: 1000 }}>
+        <Suspense fallback={null}>
+        <StreetView />
+      </Suspense>
       </Canvas>
       }
     </div>
